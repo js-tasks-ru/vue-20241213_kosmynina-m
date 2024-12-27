@@ -4,11 +4,11 @@ export default defineComponent({
   name: 'CalculatorApp',
 
   setup() {
-    let operand1=ref(0)
-    let operand2=ref(0)
-    let operator=ref('sum')
+    const operand1=ref(0)
+    const operand2=ref(0)
+    const operator=ref('sum')
     let result= computed(() => {
-      if(operator.value=='sum') return Number(operand1.value)+Number(operand2.value);
+      if(operator.value=='sum') return operand1.value+operand2.value;
       if(operator.value=='subtract') return operand1.value-operand2.value;
       if(operator.value=='multiply') return operand1.value*operand2.value;
       if(operator.value=='divide') return operand1.value/operand2.value;
@@ -24,7 +24,7 @@ export default defineComponent({
 
   template: `
     <div class="calculator">
-      <input type="number" aria-label="First operand" :value="operand1" @input="operand1=$event.target.value"/>
+      <input type="number" aria-label="First operand" v-model="operand1"/>
 
       <div class="calculator__operators">
         <label><input type="radio" name="operator" value="sum" @input="operator='sum'"/>➕</label>
@@ -33,7 +33,7 @@ export default defineComponent({
         <label><input type="radio" name="operator" value="divide" @input="operator='divide'"/>➗</label>
       </div>
 
-      <input type="number" aria-label="Second operand" :value="operand2" @input="operand2=$event.target.value"/>
+      <input type="number" aria-label="Second operand" v-model="operand2"/>
 
       <div>=</div>
 
