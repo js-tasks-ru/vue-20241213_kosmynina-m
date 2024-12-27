@@ -4,7 +4,7 @@ export default defineComponent({
   name: 'CounterApp',
 
   setup() {
-    let number=ref(0)
+    const number=ref(0)
     return{
       number,
     }
