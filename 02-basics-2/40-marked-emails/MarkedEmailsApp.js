@@ -33,20 +33,19 @@ export default defineComponent({
   name: 'MarkedEmailsApp',
 
   setup() {
-    let allEmails=ref(emails)
-    let query=ref('')
-    let markEmails=computed(() => {
-      if (query.value=='') return [];
+    const allEmails=ref(emails)
+    const query=ref('')
+    const markEmails=computed(() => {
       const searchFilter = (email) =>
-        [email]
-          .join(' ')
-          .toLowerCase()
-          .includes(query.value.toLowerCase())
+        email.toLowerCase().includes(query.value.toLowerCase())
 
-      return allEmails.value.filter((email) => searchFilter(email))
+      return allEmails.value.map(function(email) {
+        if(query.value=="") 
+          return {"email":email,"mark":false}
+        return {"email":email,"mark":searchFilter(email)};
+      });
     })
     return{
-      allEmails,
       query,
       markEmails
     }
@@ -55,15 +54,12 @@ export default defineComponent({
   template: `
     <div>
       <div class="form-group">
-        <input type="search" aria-label="Search" :value="query" @input="query=$event.target.value"/>
+        <input type="search" aria-label="Search" v-model="query"/>
       </div>
       <ul aria-label="Emails">
-        <li v-for="email in allEmails" :class="{marked:markEmails.includes(email)}">
-          {{ email }}
+        <li v-for="email in markEmails" :class="{marked:email.mark}">
+          {{ email.email }}
         </li>
-        <!-- <li class="marked">
-          Jayne_Kuhic@sydney.com
-        </li> -->
       </ul>
     </div>
   `,
