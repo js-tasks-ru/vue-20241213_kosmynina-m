@@ -7,7 +7,7 @@ export default defineComponent({
     const operand1=ref(0)
     const operand2=ref(0)
     const operator=ref('sum')
-    let result= computed(() => {
+    const result= computed(() => {
       if(operator.value=='sum') return operand1.value+operand2.value;
       if(operator.value=='subtract') return operand1.value-operand2.value;
       if(operator.value=='multiply') return operand1.value*operand2.value;
