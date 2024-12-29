@@ -27,10 +27,10 @@ export default defineComponent({
       <input type="number" aria-label="First operand" v-model="operand1"/>
 
       <div class="calculator__operators">
-        <label><input type="radio" name="operator" value="sum" @input="operator='sum'" :checked="operator=='sum'"/>➕</label>
-        <label><input type="radio" name="operator" value="subtract" @input="operator='subtract'" :checked="operator=='subtract'"/>➖</label>
-        <label><input type="radio" name="operator" value="multiply" @input="operator='multiply'" :checked="operator=='multiply'"/>✖</label>
-        <label><input type="radio" name="operator" value="divide" @input="operator='divide'" :checked="operator=='divide'"/>➗</label>
+        <label><input type="radio" name="operator" value="sum" v-model="operator"/>➕</label>
+        <label><input type="radio" name="operator" value="subtract" v-model="operator"/>➖</label>
+        <label><input type="radio" name="operator" value="multiply" v-model="operator"/>✖</label>
+        <label><input type="radio" name="operator" value="divide" v-model="operator"/>➗</label>
       </div>
 
       <input type="number" aria-label="Second operand" v-model="operand2"/>
