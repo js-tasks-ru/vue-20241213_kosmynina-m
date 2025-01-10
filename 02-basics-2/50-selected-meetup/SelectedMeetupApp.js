@@ -8,7 +8,7 @@ export default defineComponent({
   setup() {
     
     const meetupId=ref(1)
-    const meetupTitle=ref('')
+    const meetupTitle=ref(null)
     watchEffect(()=>{
       getMeetup(meetupId.value).then((data)=>{
         meetupTitle.value=data.title
