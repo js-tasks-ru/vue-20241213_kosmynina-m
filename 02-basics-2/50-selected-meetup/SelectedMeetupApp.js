@@ -1,4 +1,4 @@
-import { defineComponent,ref,watch,onMounted} from 'vue'
+import { defineComponent,ref,watchEffect,onMounted} from 'vue'
 import { getMeetup } from './meetupsService.ts'
 
 
@@ -9,11 +9,14 @@ export default defineComponent({
     
     const meetupId=ref(1)
     const meetupTitle=ref('')
-    async function getTitle() {
-      meetupTitle.value = (await getMeetup(meetupId.value)).title
-    }
-    watch(meetupId,getTitle)
-    onMounted(getTitle)
+    watchEffect(()=>{
+      getMeetup(meetupId.value).then((data)=>{
+        meetupTitle.value=data.title
+      })
+    })
+    onMounted( async ()=>{
+      meetupTitle.value= (await getMeetup(meetupId.value)).title
+    })
     function prevMeetup(){
         meetupId.value--;
     }
