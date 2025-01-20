@@ -6,21 +6,17 @@ export default defineComponent({
 
   props:{
 
-    name:{
+    text:{
         type:String,
     },
-
-    description:{
-        type:String,
-        required:true
-    }
-
   },
 
   template: `
           <div class="weather-alert">
             <span class="weather-alert__icon">⚠️</span>
-            <span class="weather-alert__description">{{ name }}: {{ description }}</span>
+            <span class="weather-alert__description">
+              <slot>{{ text }}</slot>
+            </span>
           </div>
   `,
 })

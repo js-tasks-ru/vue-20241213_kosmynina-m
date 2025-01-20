@@ -11,9 +11,9 @@ export default defineComponent({
   },
 
   setup () {
-    const WeatherData=getWeatherData()
+    const WeatherDataList=getWeatherData()
     return{
-      WeatherData,
+      WeatherDataList,
       WeatherConditionIcons
     }
   },
@@ -23,7 +23,7 @@ export default defineComponent({
       <h1 class="title">Погода в Средиземье</h1>
 
       <ul class="weather-list unstyled-list">
-        <WeatherCard :data="WeatherData" :icons="WeatherConditionIcons"/>
+        <WeatherCard v-for="WeatherData in WeatherDataList" :data="WeatherData" />
       </ul>
     </div>
   `,
