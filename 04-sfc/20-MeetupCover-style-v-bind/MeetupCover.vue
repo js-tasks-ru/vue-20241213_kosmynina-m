@@ -15,7 +15,7 @@ const bgStyle = computed(() => (props.image ? { '--bg-url': `url('${props.image}
 </script>
 
 <template>
-  <div class="meetup-cover" :style="bgStyle">
+  <div class="meetup-cover">
     <h1 class="meetup-cover__title">{{ title }}</h1>
   </div>
 </template>
@@ -34,6 +34,7 @@ const bgStyle = computed(() => (props.image ? { '--bg-url': `url('${props.image}
   height: 410px;
   max-width: 1216px;
   margin: 0 auto;
+  --bg-url:v-bind(props.image ? `url('${props.image}')` : `var(--default-cover)`);
 }
 
 .meetup-cover__title {
