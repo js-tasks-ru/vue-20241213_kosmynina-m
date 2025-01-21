@@ -14,7 +14,6 @@ import { computed } from 'vue'
   })
   const bgStyle = computed(() => (props.image ? { '--bg-url': `url('${props.image}')` } : undefined))
 </script>
-
 <template>
   <div class="meetup-cover" :style="bgStyle">
     <h1 class="meetup-cover__title">{{ title }}</h1>
