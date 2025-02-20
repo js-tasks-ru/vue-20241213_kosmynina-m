@@ -1,52 +1,39 @@
 <script>
-import { computed, defineComponent } from 'vue'
+  const agendaItemDefaultTitles = {
+    registration: 'Регистрация',
+    opening: 'Открытие',
+    break: 'Перерыв',
+    coffee: 'Coffee Break',
+    closing: 'Закрытие',
+    afterparty: 'Afterparty',
+    talk: 'Доклад',
+    other: 'Другое',
+  }
+
+  const agendaItemIcons = {
+    registration: 'key',
+    opening: 'cal-sm',
+    talk: 'tv',
+    break: 'clock',
+    coffee: 'coffee',
+    closing: 'key',
+    afterparty: 'cal-sm',
+    other: 'cal-sm',
+  }
+</script>
+<script setup>
+import { computed } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
 
-const agendaItemDefaultTitles = {
-  registration: 'Регистрация',
-  opening: 'Открытие',
-  break: 'Перерыв',
-  coffee: 'Coffee Break',
-  closing: 'Закрытие',
-  afterparty: 'Afterparty',
-  talk: 'Доклад',
-  other: 'Другое',
-}
-
-const agendaItemIcons = {
-  registration: 'key',
-  opening: 'cal-sm',
-  talk: 'tv',
-  break: 'clock',
-  coffee: 'coffee',
-  closing: 'key',
-  afterparty: 'cal-sm',
-  other: 'cal-sm',
-}
-
-export default defineComponent({
-  name: 'MeetupAgendaItem',
-
-  components: {
-    UiIcon,
-  },
-
-  props: {
+  const props= defineProps({
     agendaItem: {
       type: Object,
       required: true,
     },
-  },
+  })
 
-  setup(props) {
-    const icon = computed(() => agendaItemIcons[props.agendaItem.type])
-    const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
-    return {
-      icon,
-      title,
-    }
-  },
-})
+  const icon = computed(() => agendaItemIcons[props.agendaItem.type])
+  const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
 </script>
 
 <template>
